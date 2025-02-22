@@ -1,7 +1,7 @@
-import { concat as concatBytes, isEqual as isBytesEqual } from '@agoralabs-sh/bytes';
-import { decode as decodeUUID, encode as encodeUUID } from '@agoralabs-sh/uuid';
+import { concat as concatBytes } from '@agoralabs-sh/bytes';
+import { decode as decodeUUID } from '@agoralabs-sh/uuid';
 import { sha256 } from '@noble/hashes/sha2';
-import { decode as decodeBase64, encode as encodeBase64 } from '@stablelib/base64';
+import { decode as decodeBase64 } from '@stablelib/base64';
 
 // constants
 import { ALGORITHM_BYTE_LENGTH, ID_BYTE_LENGTH } from '@/constants';
@@ -12,43 +12,17 @@ import { VIP030026AlgorithmIDEnum } from '@/enums';
 // errors
 import { VIP030026InvalidCredentialLengthError, VIP030026UnsupportedAlgorithmIDError } from '@/errors';
 
+// models
+import VIP030026BaseCredential from './VIP030026BaseCredential';
+
 // types
 import type { IVIP030026PublicKeyCredential } from '@/types';
 
-export default class VIP030026PublicKeyCredential {
-  // private variables
-  private readonly _credential: Uint8Array;
-
-  private constructor(credential: Uint8Array) {
-    this._credential = credential;
-  }
-
-  /**
-   * private methods
-   */
-
-  /**
-   * Gets the raw algorithm, this will be the first 4 bytes of the VIP-03-0026 algorithm ID hashed using SHA-256.
-   * @returns {Uint8Array} The first 4 bytes of the VIP-03-0026 algorithm ID hashed using SHA-256.
-   * @
-   */
-  public _algorithmHashBytes(): Uint8Array {
-    return this._credential.slice(ID_BYTE_LENGTH, ID_BYTE_LENGTH + ALGORITHM_BYTE_LENGTH);
-  }
-
-  /**
-   * Gets the ID as bytes.
-   * @returns {Uint8Array} The ID as bytes.
-   * @private
-   */
-  public _idBytes(): Uint8Array {
-    return this._credential.slice(0, ID_BYTE_LENGTH - 1);
-  }
-
-  public _publicKeyBytes(): Uint8Array {
-    return this._credential.slice(ID_BYTE_LENGTH + ALGORITHM_BYTE_LENGTH);
-  }
-
+/**
+ * The public key credential adheres to the VIP-03-0026 standard that allows clients infer a credential and use it to
+ * verify the integrity of a provider response.
+ */
+export default class VIP030026PublicKeyCredential extends VIP030026BaseCredential<IVIP030026PublicKeyCredential> {
   /**
    * public static methods
    */
@@ -90,7 +64,7 @@ export default class VIP030026PublicKeyCredential {
     }
 
     _credential = concatBytes(
-      decodeUUID(credential.id),
+      decodeUUID(credential.id.toLowerCase()),
       sha256(credential.algorithm).slice(0, ALGORITHM_BYTE_LENGTH), // get the first 4 bytes of the hash
       decodeBase64(credential.publicKey)
     );
@@ -105,54 +79,21 @@ export default class VIP030026PublicKeyCredential {
   }
 
   /**
+   * protected methods
+   */
+
+  /**
+   * Gets the raw public key bytes from the credential.
+   * @returns {Uint8Array} The raw public key bytes.
+   * @protected
+   */
+  protected _publicKeyBytes(): Uint8Array {
+    return this._credential.slice(ID_BYTE_LENGTH + ALGORITHM_BYTE_LENGTH);
+  }
+
+  /**
    * public methods
    */
-
-  /**
-   * Gets the VIP-03-0026 algorithm ID.
-   * @returns {VIP030026AlgorithmIDEnum} The VIP-03-0026 algorithm ID for the credential.
-   * @throws {VIP030026UnsupportedAlgorithmIDError} If the algorithm is unsupported.
-   */
-  public algorithm(): VIP030026AlgorithmIDEnum {
-    const _algorithm = this._algorithmHashBytes();
-
-    if (isBytesEqual(_algorithm, sha256(VIP030026AlgorithmIDEnum.ES256K))) {
-      return VIP030026AlgorithmIDEnum.ES256K;
-    }
-
-    if (isBytesEqual(_algorithm, sha256(VIP030026AlgorithmIDEnum.Ed25519))) {
-      return VIP030026AlgorithmIDEnum.Ed25519;
-    }
-
-    throw new VIP030026UnsupportedAlgorithmIDError();
-  }
-
-  /**
-   * Gets the ID of the credential.
-   * @returns {string} The UUID v4 ID of the credential.
-   * @public
-   */
-  public id(): string {
-    return encodeUUID(this._idBytes());
-  }
-
-  /**
-   * Gets the base64 encoded public key of the credential.
-   * @returns {string} The public key as a base64 encoded string.
-   * @public
-   */
-  public publicKey(): string {
-    return encodeBase64(this._publicKeyBytes());
-  }
-
-  /**
-   * Gets the credential as raw bytes.
-   * @returns {Uint8Array} The credential as bytes.
-   * @public
-   */
-  public toBytes(): Uint8Array {
-    return this._credential;
-  }
 
   /**
    * Gets the credential as a JSON.
@@ -166,14 +107,5 @@ export default class VIP030026PublicKeyCredential {
       id: this.id(),
       publicKey: this.publicKey(),
     };
-  }
-
-  /**
-   * Gets the credential as a base64 encoded string.
-   * @returns {string} The credential as a base64 encoded string.
-   * @public
-   */
-  public toString(): string {
-    return encodeBase64(this._credential);
   }
 }

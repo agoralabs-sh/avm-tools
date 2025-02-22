@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@eslint/js": "catalog:",
+    "@stablelib/random": "^2.0.1",
     "@types/node": "catalog:",
     "chalk": "catalog:",
     "eslint": "catalog:",

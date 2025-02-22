@@ -224,6 +224,9 @@ importers:
       '@eslint/js':
         specifier: 'catalog:'
         version: 9.21.0
+      '@stablelib/random':
+        specifier: ^2.0.1
+        version: 2.0.1
       '@types/node':
         specifier: 'catalog:'
         version: 22.13.5
