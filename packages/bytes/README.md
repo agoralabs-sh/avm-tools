@@ -46,13 +46,14 @@ pnpm add @agoralabs-sh/bytes
 
 ### 2.1. Useful Commands
 
-| Command                   | Description                                                                 |
-|---------------------------|-----------------------------------------------------------------------------|
-| `pnpm run build`          | Generates build and TypeScript declaration files to the `dist/` directory.  |
-| `pnpm run clean`          | Deletes the `dist/` directory and the `tsconfig.*.tsbuildinfo` files.       |
-| `pnpm run generate:index` | Generates/overwrites the main `index.ts` file used for exporting all files. |
-| `pnpm run lint`           | Runs the linter based on the rules in `eslint.config.mjs`.                  |
-| `pnpm run prettier`       | Runs the prettier based on the rules in `prettier.config.mjs`.              |
+| Command               | Description                                                                 |
+|-----------------------|-----------------------------------------------------------------------------|
+| `pnpm build`          | Generates build and TypeScript declaration files to the `dist/` directory.  |
+| `pnpm clean`          | Deletes the `dist/` directory and the `tsconfig.*.tsbuildinfo` files.       |
+| `pnpm generate:index` | Generates/overwrites the main `index.ts` file used for exporting all files. |
+| `pnpm lint`           | Runs the linter based on the rules in `eslint.config.mjs`.                  |
+| `pnpm prettier`       | Runs the prettier based on the rules in `prettier.config.mjs`.              |
+| `pnpm test`           | Runs Vitest.                                                                |
 
 <sup>[Back to top ^][table-of-contents]</sup>
 
