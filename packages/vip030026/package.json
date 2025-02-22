@@ -1,0 +1,57 @@
+{
+  "name": "@agoralabs-sh/vip030026",
+  "version": "1.0.0",
+  "description": "Various utilities and tools that allow for the creation and manipulation of credentials that conform to the VIP-03-0026 standard.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agoralabs-sh/avm-tools"
+  },
+  "author": {
+    "name": "Kieran O'Neill",
+    "email": "hello@kieranoneill.com",
+    "url": "https://github.com/kieranroneill"
+  },
+  "license": "CC0-1.0",
+  "private": false,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "pnpm run clean && vite build",
+    "build:dependencies": "./scripts/prebuild.sh",
+    "clean": "shx rm -rf dist && shx rm -rf tsconfig.*.tsbuildinfo",
+    "generate:index": "tsx ./scripts/generate-index.ts",
+    "lint": "eslint .",
+    "prettier": "prettier --write \"**/*.{cjs,js,json,mjs,ts}\"",
+    "test": "vitest run --config vitest.config.ts"
+  },
+  "dependencies": {
+    "@agoralabs-sh/bytes": "workspace:^",
+    "@agoralabs-sh/uuid": "workspace:^",
+    "@noble/curves": "^1.8.1",
+    "@noble/hashes": "^1.7.1",
+    "@stablelib/base64": "^2.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "catalog:",
+    "@stablelib/random": "^2.0.1",
+    "@types/node": "catalog:",
+    "chalk": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-prettier": "catalog:",
+    "globals": "catalog:",
+    "prettier": "catalog:",
+    "shx": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "typescript-eslint": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-dts": "catalog:",
+    "vite-tsconfig-paths": "catalog:",
+    "vitest": "catalog:"
+  }
+}

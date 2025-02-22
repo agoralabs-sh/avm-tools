@@ -81,10 +81,11 @@ pnpm install
 
 ### 3.1. Packages
 
-| Name                                             | Visibility | Description                                                             | Package                                                                                                                     |
-|--------------------------------------------------|------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| [`@agoralabs/bytes`](./packages/bytes/README.md) | `public`   | Utilities for handling byte arrays.                                     | [![NPM Version](https://img.shields.io/npm/v/%40agoralabs-sh%2Fbytes)](https://www.npmjs.com/package/%40agoralabs-sh/bytes) |
-| [`@agoralabs/uuid`](./packages/uuid/README.md)   | `public`   | A UUID v4 utility package that allows generation and encoding/decoding. | [![NPM Version](https://img.shields.io/npm/v/%40agoralabs-sh%2Fuuid)](https://www.npmjs.com/package/%40agoralabs-sh/uuid)   |
+| Name                                                        | Visibility | Description                                                                                                                       | Package                                                                                                                           |
+|-------------------------------------------------------------|------------|-----------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| [`@agoralabs/bytes`](./packages/bytes/README.md)            | `public`   | Utilities for handling byte arrays.                                                                                               | [![NPM Version](https://img.shields.io/npm/v/%40agoralabs-sh%2Fbytes)](https://www.npmjs.com/package/%40agoralabs-sh/bytes)       |
+| [`@agoralabs/uuid`](./packages/uuid/README.md)              | `public`   | A UUID v4 utility package that allows generation and encoding/decoding.                                                           | [![NPM Version](https://img.shields.io/npm/v/%40agoralabs-sh%2Fuuid)](https://www.npmjs.com/package/%40agoralabs-sh/uuid)         |
+| [`@agoralabs-sh/vip030026`](./packages/vip030036/README.md) | `public`   | Various utilities and tools that allow for the creation and manipulation of credentials that conform to the VIP-03-0026 standard. | [![NPM Version](https://img.shields.io/npm/v/%40agoralabs-sh%vip030026)](https://www.npmjs.com/package/%40agoralabs-sh/vip030026) |
 
 <sup>[Back to top ^][table-of-contents]</sup>
 

@@ -12,6 +12,7 @@ jobs:
     outputs:
       bytes: ${{ steps.filter.outputs.bytes }}
       uuid: ${{ steps.filter.outputs.uuid }}
+      vip030026: ${{ steps.filter.outputs.vip030026 }}
     steps:
       - name: "📥 Filter"
         uses: dorny/paths-filter@v3
@@ -22,6 +23,8 @@ jobs:
               - 'packages/bytes/**'
             uuid:
               - 'packages/uuid/**'
+            vip030026:
+              - 'packages/vip030026/**'
 
   validate_pr_title:
     name: "Validate PR Title"
@@ -65,3 +68,11 @@ jobs:
     uses: ./.github/workflows/lint_build_test.yml
     with:
       package_name: "@agoralabs-sh/uuid"
+
+  vip030026:
+    name: "@agoralabs-sh/vip030026"
+    needs: [changed_files, validate_pr_title]
+    if: ${{ needs.changed_files.outputs.vip030026 == 'true' }}
+    uses: ./.github/workflows/lint_build_test.yml
+    with:
+      package_name: "@agoralabs-sh/vip030026"
