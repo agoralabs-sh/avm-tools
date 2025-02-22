@@ -37,9 +37,9 @@ jobs:
     secrets:
       NPM_TOKEN: ${{ secrets.PUBLISH_PUBLIC_PACKAGES_TOKEN }}
 
-  # **MUST** come after uuid as it a dependency
+  # **MUST** come after uuid and bytes as these are dependencies
   vip030026:
-    needs: [uuid]
+    needs: [bytes, uuid]
     name: "@agoralabs-sh/vip030026"
     uses: ./.github/workflows/publish_release.yml
     with:

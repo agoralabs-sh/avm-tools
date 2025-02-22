@@ -1,6 +1,6 @@
+import { concat as concatBytes, isEqual as isBytesEqual } from '@agoralabs-sh/bytes';
 import { decode as decodeUUID, encode as encodeUUID } from '@agoralabs-sh/uuid';
 import { sha256 } from '@noble/hashes/sha2';
-import { concat } from '@stablelib/bytes';
 import { decode as decodeBase64, encode as encodeBase64 } from '@stablelib/base64';
 
 // constants
@@ -89,7 +89,7 @@ export default class VIP030026PublicKeyCredential {
       });
     }
 
-    _credential = concat(
+    _credential = concatBytes(
       decodeUUID(credential.id),
       sha256(credential.algorithm).slice(0, ALGORITHM_BYTE_LENGTH), // get the first 4 bytes of the hash
       decodeBase64(credential.publicKey)
@@ -113,14 +113,14 @@ export default class VIP030026PublicKeyCredential {
    * @returns {VIP030026AlgorithmIDEnum} The VIP-03-0026 algorithm ID for the credential.
    * @throws {VIP030026UnsupportedAlgorithmIDError} If the algorithm is unsupported.
    */
-  public getAlgorithm(): VIP030026AlgorithmIDEnum {
+  public algorithm(): VIP030026AlgorithmIDEnum {
     const _algorithm = this._algorithmHashBytes();
 
-    if (isUint8ArrayEqual(_algorithm, sha256(VIP030026AlgorithmIDEnum.ES256K))) {
+    if (isBytesEqual(_algorithm, sha256(VIP030026AlgorithmIDEnum.ES256K))) {
       return VIP030026AlgorithmIDEnum.ES256K;
     }
 
-    if (isUint8ArrayEqual(_algorithm, sha256(VIP030026AlgorithmIDEnum.Ed25519))) {
+    if (isBytesEqual(_algorithm, sha256(VIP030026AlgorithmIDEnum.Ed25519))) {
       return VIP030026AlgorithmIDEnum.Ed25519;
     }
 
@@ -132,7 +132,7 @@ export default class VIP030026PublicKeyCredential {
    * @returns {string} The UUID v4 ID of the credential.
    * @public
    */
-  public getID(): string {
+  public id(): string {
     return encodeUUID(this._idBytes());
   }
 
@@ -141,7 +141,7 @@ export default class VIP030026PublicKeyCredential {
    * @returns {string} The public key as a base64 encoded string.
    * @public
    */
-  public getPublicKey(): string {
+  public publicKey(): string {
     return encodeBase64(this._publicKeyBytes());
   }
 
@@ -162,9 +162,9 @@ export default class VIP030026PublicKeyCredential {
    */
   public toJSON(): IVIP030026PublicKeyCredential {
     return {
-      algorithm: this.getAlgorithm(),
-      id: this.getID(),
-      publicKey: this.getPublicKey(),
+      algorithm: this.algorithm(),
+      id: this.id(),
+      publicKey: this.publicKey(),
     };
   }
 

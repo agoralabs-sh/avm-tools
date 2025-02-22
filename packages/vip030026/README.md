@@ -1,19 +1,19 @@
 <div align="center">
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-brightgreen.svg)](./LICENSE)
-[![NPM Version](https://img.shields.io/npm/v/%40aetherisnova%2Futils)](https://www.npmjs.com/package/%40aetherisnova/utils)
+[![NPM Version](https://img.shields.io/npm/v/%40agoralabs-sh%2Fvip030026)](https://www.npmjs.com/package/%40agoralabs-sh/vip030026)
 
 </div>
 
 <div align="center">
 
-![GitHub Release](https://img.shields.io/github/v/release/aetheris-nova/instrumentum?filter=%40aetherisnova%2Futils*)
-![GitHub Release](https://img.shields.io/github/v/release/aetheris-nova/instrumentum?include_prereleases&filter=%40aetherisnova%2Futils*&label=pre-release)
+![GitHub Release](https://img.shields.io/github/v/release/agoralabs-sh/avm-tools?filter=%40agoralabs-sh%2Fvip030026*)
+![GitHub Release](https://img.shields.io/github/v/release/agoralabs-sh/avm-tools?include_prereleases&filter=%40agoralabs-sh%2Fvip030026*&label=pre-release)
 
 </div>
 
 <h1 align="center">
-  VIP-03-0026
+  @agoralabs-sh/vip030026
 </h1>
 
 <p align="center">
@@ -53,6 +53,8 @@ pnpm add @agoralabs-sh/vip030026
 | `pnpm run generate:index` | Generates/overwrites the main `index.ts` file used for exporting all files. |
 | `pnpm run lint`           | Runs the linter based on the rules in `eslint.config.mjs`.                  |
 | `pnpm run prettier`       | Runs the prettier based on the rules in `prettier.config.mjs`.              |
+| `pnpm run prettier`       | Runs the prettier based on the rules in `prettier.config.mjs`.              |
+| `pnpm test`               | Runs tests using `vitest`.                                                  |
 
 <sup>[Back to top ^][table-of-contents]</sup>
 
