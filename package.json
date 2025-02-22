@@ -7,7 +7,7 @@
     "url": "https://github.com/agoralabs-sh/avm-tools"
   },
   "engines": {
-    "node": ">=22.x"
+    "node": ">=20.18.0"
   },
   "packageManager": "pnpm@10.3.0",
   "scripts": {
@@ -26,7 +26,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
     "prettier": "catalog:",
-    "semantic-release": "^24.2.0",
+    "semantic-release": "^23.1.1",
     "semantic-release-monorepo": "^8.0.2"
   }
 }
