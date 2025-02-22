@@ -1,5 +1,4 @@
 import { generate as generateUUID } from '@agoralabs-sh/uuid';
-import { randomBytes } from '@stablelib/random';
 import { describe, expect, test } from 'vitest';
 
 // enums
@@ -9,8 +8,6 @@ import { VIP030026AlgorithmIDEnum } from '@/enums';
 import VIP030026PrivateKeyCredential from './VIP030026PrivateKeyCredential';
 
 describe('VIP030026BaseCredential', () => {
-  const challenge = randomBytes(32);
-
   describe('algorithm()', () => {
     test('it should return a ecdsa algorithm with a secp256k1 curve', () => {
       const algorithm = VIP030026AlgorithmIDEnum.ES256K;
@@ -37,7 +34,6 @@ describe('VIP030026BaseCredential', () => {
       const credential = VIP030026PrivateKeyCredential.generate({
         id,
       });
-      const test = credential.id();
 
       expect(credential.id()).toBe(id);
     });
