@@ -22,14 +22,20 @@
 
 ---
 
-### Table Of Contents
+### Table of Contents
 
-* [1. Getting Started](#-2-getting-started)
-  - [1.1. Installation](#12-installation)
+* [1. Getting Started](#-1-getting-started)
+  - [1.1. Installation](#11-installation)
+  - [1.2. API Reference](#12-api-reference)
+    - [1.2.1. `generate([options])`](#121-generateoptions)
+    - [1.2.2. `decode(value)`](#122-decodevalue)
+    - [1.2.3. `encode(value, [options])`](#123-encodevalue-options)
+    - [1.2.4. `IExtraOptions`](#124-iextraoptions)
 * [2. Appendix](#-2-appendix)
   - [2.1. Useful Commands](#21-useful-commands)
 * [3. How To Contribute](#-3-how-to-contribute)
 * [4. License](#-4-license)
+* [5. Credits](#-5-credits)
 
 ## 🪄 1. Getting Started
 
@@ -37,8 +43,106 @@
 
 You can install the types using:
 ```shell
-pnpm add @agoralabs-sh/uuid
+npm add @agoralabs-sh/uuid
 ```
+
+<sup>[Back to top ^][table-of-contents]</sup>
+
+### 1.2. API Reference
+
+#### 1.2.1. `generate([options])`
+
+> Generates a random UUID v4 string.
+
+##### Parameters
+
+| Name    | Type                                  | Required | Default | Description                                                  |
+|---------|---------------------------------------|----------|---------|--------------------------------------------------------------|
+| options | [`IExtraOptions`](#124-iextraoptions) | no       | -       | Options that allows the UUID to to be returned to uppercase. |
+
+##### Returns
+
+| Type     | Description              |
+|----------|--------------------------|
+| `string` | A random UUID v4 string. |
+
+##### Example
+
+```typescript
+import { generate } from '@agoralabs-sh/uuid';
+
+const uuid = generate();
+
+console.log(uuid);
+// 18b0e62a-21c6-4e27-a813-825716f0fedb
+```
+
+<sup>[Back to top ^][table-of-contents]</sup>
+
+#### 1.2.2. `decode(value)`
+
+> Decodes the UUID into a byte array. This removes any hyphens and case is preserved.
+
+##### Parameters
+
+| Name  | Type     | Required | Default | Description        |
+|-------|----------|----------|---------|--------------------|
+| value | `string` | yes      | -       | The UUID to decode |
+
+##### Returns
+
+| Type         | Description        |
+|--------------|--------------------|
+| `Uint8Array` | The UUID as bytes. |
+
+##### Example
+
+```typescript
+import { decode } from '@agoralabs-sh/uuid';
+
+const decoded = decode('18b0e62a-21c6-4e27-a813-825716f0fedb');
+
+console.log(decoded);
+// [24, 176, 230, 42, 33, 198, 78, 39, 168, 19, 130, 87, 22, 240, 254, 219]
+```
+
+<sup>[Back to top ^][table-of-contents]</sup>
+
+#### 1.2.3. `encode(value, [options])`
+
+> Encodes the UUID into the human-readable format with hyphens added.
+
+##### Parameters
+
+| Name    | Type                                  | Required | Default | Description                                                  |
+|---------|---------------------------------------|----------|---------|--------------------------------------------------------------|
+| value   | `Uint8Array`                          | yes      | -       | A UUID byte array.                                           |
+| options | [`IExtraOptions`](#124-iextraoptions) | no       | -       | Options that allows the UUID to to be returned to uppercase. |
+
+##### Returns
+
+| Type     | Description                                         |
+|----------|-----------------------------------------------------|
+| `string` | The encoded UUID string as a human-readable string. |
+
+##### Example
+
+```typescript
+import { encode } from '@agoralabs-sh/uuid';
+
+const uuid = encode(new Uint8Array([24, 176, 230, 42, 33, 198, 78, 39, 168, 19, 130, 87, 22, 240, 254, 219]));
+
+console.log(uuid);
+// 18b0e62a-21c6-4e27-a813-825716f0fedb
+```
+
+<sup>[Back to top ^][table-of-contents]</sup>
+
+#### 1.2.4. `IExtraOptions`
+
+| Name      | Type                                                     | Required | Default | Description                                   |
+|-----------|----------------------------------------------------------|----------|---------|-----------------------------------------------|
+| uppercase | `boolean`                                                | no       | `false` | Whether the UUID is transformed to uppercase. |
 
 <sup>[Back to top ^][table-of-contents]</sup>
 
@@ -65,6 +169,12 @@ Please read the [**Contributing Guide**][contribute] to learn about the developm
 ## 📄 4. License
 
 Please refer to the [LICENSE][license] file.
+
+<sup>[Back to top ^][table-of-contents]</sup>
+
+## 🫶 5. Credits
+
+* The generation of the UUID is thanks to the amazing [@dhest](https://github.com/dchest) and their amazing [@stablelib](https://github.com/StableLib/stablelib) library.
 
 <sup>[Back to top ^][table-of-contents]</sup>
 

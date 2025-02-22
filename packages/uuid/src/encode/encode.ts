@@ -4,7 +4,7 @@ import { encode as encodeHex } from '@stablelib/hex';
 import type { IExtraOptions } from '@/types';
 
 /**
- * Encodes the UUID into the human-readable format with the hyphen replaced.
+ * Encodes the UUID into the human-readable format with hyphens added.
  * @param {Uint8Array} value - The UUID in bytes.
  * @param {IExtraOptions} options - [optional] Whether the UUID is returned in uppercase of lower case.
  * @returns {string} The UUID with the hyphens added.
