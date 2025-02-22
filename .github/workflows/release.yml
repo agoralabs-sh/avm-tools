@@ -16,8 +16,19 @@ permissions:
   packages: write  # to be able to publish packages
   pull-requests: write # to be able to comment on released pull requests
 
+# each job **MUST** run sequentially as a potential release will alter commit and push a CHANGELOG and bump its package version
 jobs:
+  bytes:
+    name: "@agoralabs-sh/bytes"
+    uses: ./.github/workflows/publish_release.yml
+    with:
+      package_dir: "bytes"
+      package_name: "@agoralabs-sh/bytes"
+    secrets:
+      NPM_TOKEN: ${{ secrets.PUBLISH_PUBLIC_PACKAGES_TOKEN }}
+
   uuid:
+    needs: [bytes]
     name: "@agoralabs-sh/uuid"
     uses: ./.github/workflows/publish_release.yml
     with:

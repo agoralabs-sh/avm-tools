@@ -10,6 +10,7 @@ jobs:
     permissions:
       pull-requests: read
     outputs:
+      bytes: ${{ steps.filter.outputs.bytes }}
       uuid: ${{ steps.filter.outputs.uuid }}
     steps:
       - name: "📥 Filter"
@@ -17,6 +18,8 @@ jobs:
         id: filter
         with:
           filters: |
+            bytes:
+              - 'packages/bytes/**'
             uuid:
               - 'packages/uuid/**'
 
@@ -46,6 +49,14 @@ jobs:
   ##
   # package specific
   ##
+
+  bytes:
+    name: "@agoralabs-sh/bytes"
+    needs: [changed_files, validate_pr_title]
+    if: ${{ needs.changed_files.outputs.uuid == 'true' }}
+    uses: ./.github/workflows/lint_build_test.yml
+    with:
+      package_name: "@agoralabs-sh/bytes"
 
   uuid:
     name: "@agoralabs-sh/uuid"
