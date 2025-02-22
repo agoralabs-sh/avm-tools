@@ -32,13 +32,14 @@ describe('VIP030026BaseCredential', () => {
   });
 
   describe('id()', () => {
-    test('it return the id', () => {
+    test('it should return the specified id', () => {
       const id = generateUUID();
       const credential = VIP030026PrivateKeyCredential.generate({
         id,
       });
+      const test = credential.id();
 
-      expect(credential.id().toLowerCase()).toBe(id.toLowerCase());
+      expect(credential.id()).toBe(id);
     });
   });
 });

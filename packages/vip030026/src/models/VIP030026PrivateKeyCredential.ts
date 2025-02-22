@@ -113,7 +113,7 @@ export default class VIP030026PrivateKeyCredential extends VIP030026BaseCredenti
     }
 
     credential = concatBytes(
-      decodeUUID(id.toLowerCase()),
+      decodeUUID(id),
       sha256(algorithm).slice(0, ALGORITHM_BYTE_LENGTH), // get the first 4 bytes of the hash
       privateKeyBytes
     );

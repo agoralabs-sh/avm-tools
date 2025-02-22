@@ -56,7 +56,7 @@ export default abstract class VIP030026BaseCredential<Type> {
    * @protected
    */
   protected _idBytes(): Uint8Array {
-    return this._credential.slice(0, ID_BYTE_LENGTH - 1);
+    return this._credential.slice(0, ID_BYTE_LENGTH);
   }
 
   /**
