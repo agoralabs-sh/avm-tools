@@ -53,7 +53,7 @@ jobs:
   bytes:
     name: "@agoralabs-sh/bytes"
     needs: [changed_files, validate_pr_title]
-    if: ${{ needs.changed_files.outputs.uuid == 'true' }}
+    if: ${{ needs.changed_files.outputs.bytes == 'true' }}
     uses: ./.github/workflows/lint_build_test.yml
     with:
       package_name: "@agoralabs-sh/bytes"
