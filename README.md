@@ -62,7 +62,7 @@ Each package **SHOULD** reflect the name of the package, i.e. the `packages/sigi
 
 ### 2.1. Requirements
 
-* Install [Node v22.10.1+](https://nodejs.org/en/)
+* Install [Node v22+](https://nodejs.org/en/)
 * Install [pnpm v10.3.0+](https://pnpm.io/installation)
 
 <sup>[Back to top ^][table-of-contents]</sup>

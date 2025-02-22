@@ -7,7 +7,7 @@
     "url": "https://github.com/agoralabs-sh/avm-tools"
   },
   "engines": {
-    "node": ">=22.10.1"
+    "node": ">=22.x"
   },
   "packageManager": "pnpm@10.3.0",
   "scripts": {
