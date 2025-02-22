@@ -27,7 +27,7 @@
     "generate:index": "tsx ./scripts/generate-index.ts",
     "lint": "eslint .",
     "prettier": "prettier --write \"**/*.{cjs,js,json,mjs,ts}\"",
-    "test": "exit 0"
+    "test": "vitest run --config vitest.config.ts"
   },
   "dependencies": {
     "@stablelib/hex": "^2.0.1",
@@ -47,6 +47,7 @@
     "typescript-eslint": "catalog:",
     "vite": "catalog:",
     "vite-plugin-dts": "catalog:",
-    "vite-tsconfig-paths": "catalog:"
+    "vite-tsconfig-paths": "catalog:",
+    "vitest": "catalog:"
   }
 }

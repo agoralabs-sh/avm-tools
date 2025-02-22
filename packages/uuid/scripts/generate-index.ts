@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { readdirSync, rmSync, type Stats, statSync, writeFileSync } from 'node:fs';
 import { join, parse, type ParsedPath } from 'node:path';
 import * as process from 'node:process';
 
@@ -10,7 +10,8 @@ function main(): void {
   const exports = ['// exports will be generated automatically generated using: pnpm generate:index'];
   const srcDir = 'src';
   const indexFilePath = join(srcDir, 'index.ts');
-  let file: ParsedPath;
+  let dir: ParsedPath;
+  let stat: Stats;
 
   // remove the index file
   rmSync(indexFilePath, {
@@ -19,9 +20,16 @@ function main(): void {
 
   // get utils
   for (const item of readdirSync(srcDir)) {
-    file = parse(item);
+    stat = statSync(join(srcDir, item));
 
-    exports.push(`export { default as ${file.name} } from './${file.name}';`);
+    // if it is not a directory, move on
+    if (!stat.isDirectory()) {
+      continue;
+    }
+
+    dir = parse(item);
+
+    exports.push(`export * from './${dir.name}';`);
   }
 
   // write to index file
