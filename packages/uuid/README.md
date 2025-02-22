@@ -1,19 +1,19 @@
 <div align="center">
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-brightgreen.svg)](./LICENSE)
-[![NPM Version](https://img.shields.io/npm/v/%40aetherisnova%2Futils)](https://www.npmjs.com/package/%40aetherisnova/utils)
+[![NPM Version](https://img.shields.io/npm/v/%40agoralabs-sh%2Fuuid)](https://www.npmjs.com/package/%40agoralabs-sh/uuid)
 
 </div>
 
 <div align="center">
 
-![GitHub Release](https://img.shields.io/github/v/release/aetheris-nova/instrumentum?filter=%40aetherisnova%2Futils*)
-![GitHub Release](https://img.shields.io/github/v/release/aetheris-nova/instrumentum?include_prereleases&filter=%40aetherisnova%2Futils*&label=pre-release)
+![GitHub Release](https://img.shields.io/github/v/release/agoralabs-sh/uuid?filter=%40agoralabs-sh%2Fuuid*)
+![GitHub Release](https://img.shields.io/github/v/release/agoralabs-sh/uuid?include_prereleases&filter=%40agoralabs-sh%2Fuuid*&label=pre-release)
 
 </div>
 
 <h1 align="center">
-  UUID
+  @agoralabs/uuid
 </h1>
 
 <p align="center">
