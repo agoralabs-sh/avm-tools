@@ -1,0 +1,47 @@
+{
+  "name": "@agoralabs-sh/uuid",
+  "version": "1.0.0",
+  "private": false,
+  "description": "A UUID v4 utility package that allows generation and encoding/decoding.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agoralabs-sh/avm-tools"
+  },
+  "license": "CC0-1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "pnpm run clean && vite build",
+    "build:dependencies": "exit 0",
+    "clean": "shx rm -rf dist && shx rm -rf tsconfig.*.tsbuildinfo",
+    "generate:index": "tsx ./scripts/generate-index.ts",
+    "lint": "eslint .",
+    "prettier": "prettier --write \"**/*.{cjs,js,json,mjs,ts}\"",
+    "test": "exit 0"
+  },
+  "dependencies": {
+    "@stablelib/hex": "^2.0.1",
+    "@stablelib/uuid": "^2.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "catalog:",
+    "@types/node": "catalog:",
+    "chalk": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-prettier": "catalog:",
+    "globals": "catalog:",
+    "prettier": "catalog:",
+    "shx": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "typescript-eslint": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-dts": "catalog:",
+    "vite-tsconfig-paths": "catalog:"
+  }
+}
