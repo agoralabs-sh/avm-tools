@@ -9,7 +9,7 @@
 # Returns exit code 0.
 function main {
   # build workspace dependencies
-  pnpm -F @agoralabs-sh/uuid run build
+  pnpm -F @agoralabs-sh/uuid build
 
   exit 0
 }

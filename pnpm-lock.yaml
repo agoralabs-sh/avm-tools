@@ -153,6 +153,9 @@ importers:
 
   packages/vip030026:
     dependencies:
+      '@agoralabs-sh/uuid':
+        specifier: workspace:^
+        version: link:../uuid
       '@noble/curves':
         specifier: ^1.8.1
         version: 1.8.1
