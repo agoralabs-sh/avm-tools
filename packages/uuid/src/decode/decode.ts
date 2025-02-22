@@ -6,5 +6,5 @@ import { decode as decodeHex } from '@stablelib/hex';
  * @returns {Uint8Array} The UUID as bytes.
  */
 export default function decode(value: string): Uint8Array {
-  return decodeHex(value.replace(/-/g, ''));
+  return decodeHex(value.replace(/-/g, '').toLowerCase());
 }

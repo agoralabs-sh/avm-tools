@@ -7,8 +7,8 @@
 
 <div align="center">
 
-![GitHub Release](https://img.shields.io/github/v/release/agoralabs-sh/uuid?filter=%40agoralabs-sh%2Fuuid*)
-![GitHub Release](https://img.shields.io/github/v/release/agoralabs-sh/uuid?include_prereleases&filter=%40agoralabs-sh%2Fuuid*&label=pre-release)
+![GitHub Release](https://img.shields.io/github/v/release/agoralabs-sh/avm-tools?filter=%40agoralabs-sh%2Fuuid*)
+![GitHub Release](https://img.shields.io/github/v/release/agoralabs-sh/avm-tools?include_prereleases&filter=%40agoralabs-sh%2Fuuid*&label=pre-release)
 
 </div>
 
