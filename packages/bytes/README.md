@@ -13,7 +13,7 @@
 </div>
 
 <h1 align="center">
-  Bytes
+  @agoralabs/bytes
 </h1>
 
 <p align="center">
