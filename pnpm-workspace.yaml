@@ -16,3 +16,4 @@ catalog:
   vite: ^6.0.3
   vite-plugin-dts: ^4.3.0
   vite-tsconfig-paths: ^5.1.4
+  vitest: ^3.0.5
