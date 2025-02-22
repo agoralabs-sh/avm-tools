@@ -23,13 +23,13 @@ export default {
         assets: ['package.json', 'CHANGELOG.md'],
         message: `chore(release): ${packageJSON.name}-v$\{nextRelease.version}
 
-$\{nextRelease.notes}`
-      }
+$\{nextRelease.notes}`,
+      },
     ],
     [
       '@semantic-release/github',
       {
-        releasedLabels: ['🚀 released']
+        releasedLabels: ['🚀 released'],
       },
     ],
   ],
