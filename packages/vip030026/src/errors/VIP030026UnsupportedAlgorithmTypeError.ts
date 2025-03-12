@@ -7,7 +7,7 @@ import BaseVIP030026Error from './BaseVIP030026Error';
 // types
 import type { IVIP030026UnsupportedAlgorithmIDErrorOptions } from '@/types';
 
-export default class VIP030026UnsupportedAlgorithmIDError extends BaseVIP030026Error {
+export default class VIP030026UnsupportedAlgorithmTypeError extends BaseVIP030026Error {
   public readonly type: VIP030026ErrorTypeEnum = VIP030026ErrorTypeEnum.UnsupportedAlgorithmIDError;
   public readonly algorithm: string | undefined;
 

@@ -48,12 +48,13 @@ pnpm add @agoralabs-sh/vip030026
 
 | Command                   | Description                                                                 |
 |---------------------------|-----------------------------------------------------------------------------|
-| `pnpm run build`          | Generates build and TypeScript declaration files to the `dist/` directory.  |
-| `pnpm run clean`          | Deletes the `dist/` directory and the `tsconfig.*.tsbuildinfo` files.       |
-| `pnpm run generate:index` | Generates/overwrites the main `index.ts` file used for exporting all files. |
-| `pnpm run lint`           | Runs the linter based on the rules in `eslint.config.mjs`.                  |
-| `pnpm run prettier`       | Runs the prettier based on the rules in `prettier.config.mjs`.              |
-| `pnpm run prettier`       | Runs the prettier based on the rules in `prettier.config.mjs`.              |
+| `pnpm build`              | Generates build and TypeScript declaration files to the `dist/` directory.  |
+| `pnpm build:dependencies` | Builds any workspace dependencies.                                          |
+| `pnpm clean`              | Deletes the `dist/` directory and the `tsconfig.*.tsbuildinfo` files.       |
+| `pnpm generate:index`     | Generates/overwrites the main `index.ts` file used for exporting all files. |
+| `pnpm lint`               | Runs the linter based on the rules in `eslint.config.mjs`.                  |
+| `pnpm prettier`           | Runs the prettier based on the rules in `prettier.config.mjs`.              |
+| `pnpm prettier`           | Runs the prettier based on the rules in `prettier.config.mjs`.              |
 | `pnpm test`               | Runs tests using `vitest`.                                                  |
 
 <sup>[Back to top ^][table-of-contents]</sup>

@@ -9,10 +9,10 @@ import { decode as decodeBase64, encode as encodeBase64 } from '@stablelib/base6
 import { ALGORITHM_BYTE_LENGTH, ID_BYTE_LENGTH } from '@/constants';
 
 // enums
-import { VIP030026AlgorithmIDEnum } from '@/enums';
+import { VIP030026AlgorithmTypeEnum } from '@/enums';
 
 // errors
-import { VIP030026InvalidCredentialLengthError, VIP030026UnsupportedAlgorithmIDError } from '@/errors';
+import { VIP030026InvalidCredentialLengthError, VIP030026UnsupportedAlgorithmTypeError } from '@/errors';
 
 // models
 import VIP030026BaseCredential from './VIP030026BaseCredential';
@@ -54,7 +54,7 @@ export default class VIP030026PrivateKeyCredential extends VIP030026BaseCredenti
    * Creates a credential from a JSON.
    * @param {IVIP030026PrivateKeyCredential} credential - A JSON containing the values of a credential.
    * @returns {VIP030026PrivateKeyCredential} An initialized VIP030026PrivateKeyCredential.
-   * @throws {VIP030026UnsupportedAlgorithmIDError} If the algorithm is unsupported.
+   * @throws {VIP030026UnsupportedAlgorithmTypeError} If the algorithm is unsupported.
    * @throws {VIP030026InvalidCredentialLengthError} If the credential length is invalid.
    * @static
    * @public
@@ -62,8 +62,8 @@ export default class VIP030026PrivateKeyCredential extends VIP030026BaseCredenti
   public static fromJSON(credential: IVIP030026PrivateKeyCredential): VIP030026PrivateKeyCredential {
     let _credential: Uint8Array;
 
-    if (!Object.values(VIP030026AlgorithmIDEnum).some((value) => value === credential.algorithm)) {
-      throw new VIP030026UnsupportedAlgorithmIDError({
+    if (!Object.values(VIP030026AlgorithmTypeEnum).some((value) => value === credential.algorithm)) {
+      throw new VIP030026UnsupportedAlgorithmTypeError({
         algorithm: credential.algorithm,
       });
     }
@@ -88,26 +88,26 @@ export default class VIP030026PrivateKeyCredential extends VIP030026BaseCredenti
    * create the private key and a random unique UUID is used.
    * @param {IVIP030026PrivateKeyCredentialGenerateOptions} options - [optional] The algorithm and a UUID identifier.
    * @returns {VIP030026PrivateKeyCredential} An initialized VIP030026PrivateKeyCredential.
-   * @throws {VIP030026UnsupportedAlgorithmIDError} If the supplied algorithm is unsupported.
+   * @throws {VIP030026UnsupportedAlgorithmTypeError} If the supplied algorithm is unsupported.
    * @throws {VIP030026InvalidCredentialLengthError} If the supplied cause the credential length to be invalid.
    * @static
    * @public
    */
   public static generate(options?: IVIP030026PrivateKeyCredentialGenerateOptions): VIP030026PrivateKeyCredential {
-    const algorithm = options?.algorithm ?? VIP030026AlgorithmIDEnum.Ed25519;
+    const algorithm = options?.algorithm ?? VIP030026AlgorithmTypeEnum.Ed25519;
     const id = options?.id ?? generateUUID();
     let credential: Uint8Array;
     let privateKeyBytes: Uint8Array;
 
     switch (algorithm) {
-      case VIP030026AlgorithmIDEnum.Ed25519:
+      case VIP030026AlgorithmTypeEnum.Ed25519:
         privateKeyBytes = ed25519.utils.randomPrivateKey();
         break;
-      case VIP030026AlgorithmIDEnum.ES256K:
+      case VIP030026AlgorithmTypeEnum.ES256K:
         privateKeyBytes = secp256k1.utils.randomPrivateKey();
         break;
       default:
-        throw new VIP030026UnsupportedAlgorithmIDError({
+        throw new VIP030026UnsupportedAlgorithmTypeError({
           algorithm,
         });
     }
@@ -141,12 +141,12 @@ export default class VIP030026PrivateKeyCredential extends VIP030026BaseCredenti
     const privateKeyBytes = this._privateKeyBytes();
 
     switch (algorithm) {
-      case VIP030026AlgorithmIDEnum.Ed25519:
+      case VIP030026AlgorithmTypeEnum.Ed25519:
         return ed25519.getPublicKey(privateKeyBytes);
-      case VIP030026AlgorithmIDEnum.ES256K:
+      case VIP030026AlgorithmTypeEnum.ES256K:
         return secp256k1.getPublicKey(privateKeyBytes);
       default:
-        throw new VIP030026UnsupportedAlgorithmIDError({
+        throw new VIP030026UnsupportedAlgorithmTypeError({
           algorithm,
         });
     }
@@ -184,12 +184,12 @@ export default class VIP030026PrivateKeyCredential extends VIP030026BaseCredenti
     const privateKeyBytes = this._privateKeyBytes();
 
     switch (algorithm) {
-      case VIP030026AlgorithmIDEnum.Ed25519:
+      case VIP030026AlgorithmTypeEnum.Ed25519:
         return ed25519.sign(bytes, privateKeyBytes);
-      case VIP030026AlgorithmIDEnum.ES256K:
+      case VIP030026AlgorithmTypeEnum.ES256K:
         return secp256k1.sign(bytes, privateKeyBytes, { prehash: true }).toCompactRawBytes();
       default:
-        throw new VIP030026UnsupportedAlgorithmIDError({
+        throw new VIP030026UnsupportedAlgorithmTypeError({
           algorithm,
         });
     }
@@ -198,7 +198,7 @@ export default class VIP030026PrivateKeyCredential extends VIP030026BaseCredenti
   /**
    * Gets the credential as a JSON.
    * @returns {IVIP030026PrivateKeyCredential} The credential formatted as a JSON.
-   * @throws {VIP030026UnsupportedAlgorithmIDError} If the algorithm is unsupported.
+   * @throws {VIP030026UnsupportedAlgorithmTypeError} If the algorithm is unsupported.
    * @public
    */
   public toJSON(): IVIP030026PrivateKeyCredential {

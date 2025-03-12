@@ -7,10 +7,10 @@ import { decode as decodeBase64 } from '@stablelib/base64';
 import { ALGORITHM_BYTE_LENGTH, ID_BYTE_LENGTH } from '@/constants';
 
 // enums
-import { VIP030026AlgorithmIDEnum } from '@/enums';
+import { VIP030026AlgorithmTypeEnum } from '@/enums';
 
 // errors
-import { VIP030026InvalidCredentialLengthError, VIP030026UnsupportedAlgorithmIDError } from '@/errors';
+import { VIP030026InvalidCredentialLengthError, VIP030026UnsupportedAlgorithmTypeError } from '@/errors';
 
 // models
 import VIP030026BaseCredential from './VIP030026BaseCredential';
@@ -49,7 +49,7 @@ export default class VIP030026PublicKeyCredential extends VIP030026BaseCredentia
    * Creates a credential from a JSON.
    * @param {IVIP030026PublicKeyCredential} credential - A JSON containing the values of a credential.
    * @returns {VIP030026PublicKeyCredential} An initialized VIP030026PublicKeyCredential.
-   * @throws {VIP030026UnsupportedAlgorithmIDError} If the algorithm is unsupported.
+   * @throws {VIP030026UnsupportedAlgorithmTypeError} If the algorithm is unsupported.
    * @throws {VIP030026InvalidCredentialLengthError} If the credential length is invalid.
    * @static
    * @public
@@ -57,8 +57,8 @@ export default class VIP030026PublicKeyCredential extends VIP030026BaseCredentia
   public static fromJSON(credential: IVIP030026PublicKeyCredential): VIP030026PublicKeyCredential {
     let _credential: Uint8Array;
 
-    if (!Object.values(VIP030026AlgorithmIDEnum).some((value) => value === credential.algorithm)) {
-      throw new VIP030026UnsupportedAlgorithmIDError({
+    if (!Object.values(VIP030026AlgorithmTypeEnum).some((value) => value === credential.algorithm)) {
+      throw new VIP030026UnsupportedAlgorithmTypeError({
         algorithm: credential.algorithm,
       });
     }
@@ -98,7 +98,7 @@ export default class VIP030026PublicKeyCredential extends VIP030026BaseCredentia
   /**
    * Gets the credential as a JSON.
    * @returns {IVIP030026PublicKeyCredential} The credential formatted as a JSON.
-   * @throws {VIP030026UnsupportedAlgorithmIDError} If the algorithm is unsupported.
+   * @throws {VIP030026UnsupportedAlgorithmTypeError} If the algorithm is unsupported.
    * @public
    */
   public toJSON(): IVIP030026PublicKeyCredential {

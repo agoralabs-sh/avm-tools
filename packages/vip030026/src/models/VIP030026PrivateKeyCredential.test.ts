@@ -2,7 +2,7 @@ import { randomBytes } from '@stablelib/random';
 import { describe, expect, test } from 'vitest';
 
 // enums
-import { VIP030026AlgorithmIDEnum } from '@/enums';
+import { VIP030026AlgorithmTypeEnum } from '@/enums';
 
 // models
 import VIP030026PrivateKeyCredential from './VIP030026PrivateKeyCredential';
@@ -13,7 +13,7 @@ describe(VIP030026PrivateKeyCredential.name, () => {
   describe('sign()', () => {
     test('it should sign using a ecdsa algorithm with a secp256k1 curve', () => {
       const credential = VIP030026PrivateKeyCredential.generate({
-        algorithm: VIP030026AlgorithmIDEnum.ES256K,
+        algorithm: VIP030026AlgorithmTypeEnum.ES256K,
       });
       const signature = credential.sign(challenge);
 
@@ -22,7 +22,7 @@ describe(VIP030026PrivateKeyCredential.name, () => {
 
     test('it should sign using a ed25519 algorithm', () => {
       const credential = VIP030026PrivateKeyCredential.generate({
-        algorithm: VIP030026AlgorithmIDEnum.Ed25519,
+        algorithm: VIP030026AlgorithmTypeEnum.Ed25519,
       });
       const signature = credential.sign(challenge);
 

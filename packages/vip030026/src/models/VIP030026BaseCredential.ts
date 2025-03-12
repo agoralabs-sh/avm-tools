@@ -9,10 +9,10 @@ import { encode as encodeBase64 } from '@stablelib/base64';
 import { ALGORITHM_BYTE_LENGTH, ID_BYTE_LENGTH } from '@/constants';
 
 // enums
-import { VIP030026AlgorithmIDEnum } from '@/enums';
+import { VIP030026AlgorithmTypeEnum } from '@/enums';
 
 // errors
-import { VIP030026UnsupportedAlgorithmIDError } from '@/errors';
+import { VIP030026UnsupportedAlgorithmTypeError } from '@/errors';
 
 // types
 import { IVIP030026CredentialVerifyBytesOptions } from '@/types';
@@ -65,21 +65,21 @@ export default abstract class VIP030026BaseCredential<Type> {
 
   /**
    * Gets the VIP-03-0026 algorithm ID.
-   * @returns {VIP030026AlgorithmIDEnum} The VIP-03-0026 algorithm ID for the credential.
-   * @throws {VIP030026UnsupportedAlgorithmIDError} If the algorithm is unsupported.
+   * @returns {VIP030026AlgorithmTypeEnum} The VIP-03-0026 algorithm ID for the credential.
+   * @throws {VIP030026UnsupportedAlgorithmTypeError} If the algorithm is unsupported.
    */
-  public algorithm(): VIP030026AlgorithmIDEnum {
+  public algorithm(): VIP030026AlgorithmTypeEnum {
     const _algorithm = this._algorithmHashBytes();
 
-    if (isBytesEqual(_algorithm, sha256(VIP030026AlgorithmIDEnum.ES256K).slice(0, ALGORITHM_BYTE_LENGTH))) {
-      return VIP030026AlgorithmIDEnum.ES256K;
+    if (isBytesEqual(_algorithm, sha256(VIP030026AlgorithmTypeEnum.ES256K).slice(0, ALGORITHM_BYTE_LENGTH))) {
+      return VIP030026AlgorithmTypeEnum.ES256K;
     }
 
-    if (isBytesEqual(_algorithm, sha256(VIP030026AlgorithmIDEnum.Ed25519).slice(0, ALGORITHM_BYTE_LENGTH))) {
-      return VIP030026AlgorithmIDEnum.Ed25519;
+    if (isBytesEqual(_algorithm, sha256(VIP030026AlgorithmTypeEnum.Ed25519).slice(0, ALGORITHM_BYTE_LENGTH))) {
+      return VIP030026AlgorithmTypeEnum.Ed25519;
     }
 
-    throw new VIP030026UnsupportedAlgorithmIDError();
+    throw new VIP030026UnsupportedAlgorithmTypeError();
   }
 
   /**
@@ -122,7 +122,7 @@ export default abstract class VIP030026BaseCredential<Type> {
    * Verifies the supplied bytes' hash against the credentials and signature.
    * @param {IVIP030026CredentialVerifyBytesOptions} options - The bytes used to sign and the signature.
    * @returns {boolean} True if the signature can be verified, false otherwise.
-   * @throws {VIP030026UnsupportedAlgorithmIDError} If the algorithm is unsupported.
+   * @throws {VIP030026UnsupportedAlgorithmTypeError} If the algorithm is unsupported.
    * @public
    */
   public verify({ bytes, signature }: IVIP030026CredentialVerifyBytesOptions): boolean {
@@ -130,12 +130,12 @@ export default abstract class VIP030026BaseCredential<Type> {
     const publicKeyBytes = this._publicKeyBytes();
 
     switch (algorithm) {
-      case VIP030026AlgorithmIDEnum.Ed25519:
+      case VIP030026AlgorithmTypeEnum.Ed25519:
         return ed25519.verify(signature, bytes, publicKeyBytes);
-      case VIP030026AlgorithmIDEnum.ES256K:
+      case VIP030026AlgorithmTypeEnum.ES256K:
         return secp256k1.verify(signature, bytes, publicKeyBytes, { prehash: true });
       default:
-        throw new VIP030026UnsupportedAlgorithmIDError({
+        throw new VIP030026UnsupportedAlgorithmTypeError({
           algorithm,
         });
     }
